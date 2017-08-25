@@ -3,11 +3,9 @@ FROM centos:centos6.6
 MAINTAINER FIWARE Orion Context Broker Team. Telefónica I+D
 
 ENV ORION_USER orion
-ENV GIT_REV_ORION cpqd_master
 ENV CLEAN_DEV_TOOLS 1
 
 WORKDIR /opt
-
 RUN \
     adduser --comment "${ORION_USER}" ${ORION_USER} && \
     # Install dependencies
@@ -45,11 +43,11 @@ RUN \
     curl -kOL https://github.com/miloyip/rapidjson/archive/v1.0.2.tar.gz && \
     tar xfz v1.0.2.tar.gz && \
     mv rapidjson-1.0.2/include/rapidjson/ /usr/local/include
+
+COPY . ./fiware-orion
 RUN \
     # Install orion from source
-    git clone https://github.com/giovannicuriel/fiware-orion && \
     cd fiware-orion && \
-    git checkout ${GIT_REV_ORION} && \
     make && \
     make install && \
     # reduce size of installed binaries
