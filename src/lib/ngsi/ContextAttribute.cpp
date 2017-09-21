@@ -648,8 +648,14 @@ std::string ContextAttribute::render
         }
         else // regular number
         {
-          effectiveValue = toString(numberValue);
-          withoutQuotes  = true;
+          if (numberValue != numberValue) {
+        	  // Only true for nan
+        	  effectiveValue = "nan";
+        	  withoutQuotes = false;
+          } else {
+			  effectiveValue = toString(numberValue);
+			  withoutQuotes  = true;
+          }
         }
         break;
 
