@@ -1027,7 +1027,7 @@ template <> std::string toString(double f)
   std::ostringstream ss;
 
   // We should test for each case to return the correct string.
-  if (f != f) {
+  if (isnan(f)) {
     // Avoid convert invalid numbers (nan)
 	return "nan";
   } else if (isinf(f)) {

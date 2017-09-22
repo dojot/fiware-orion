@@ -34,7 +34,7 @@
 
 
 #ifndef IS_NUMBER
-#define IS_NUMBER(x) ((x == x) && (!isinf(x)))
+#define IS_NUMBER(x) ((!isnan(x)) && (!isinf(x)))
 #endif
 
 
