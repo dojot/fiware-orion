@@ -1026,6 +1026,15 @@ template <> std::string toString(double f)
 {
   std::ostringstream ss;
 
+  // We should test for each case to return the correct string.
+  if (f != f) {
+    // Avoid convert invalid numbers (nan)
+	return "nan";
+  } else if (isinf(f)) {
+	// Avoid convert invalid numbers (+/- infinity)
+	return "inf";
+  }
+
   unsigned int digits = decimalDigits(f);
   if (digits > 0)
   {

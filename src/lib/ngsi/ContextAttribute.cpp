@@ -527,7 +527,11 @@ std::string ContextAttribute::renderAsJsonObject
         else // regular number
         {
           effectiveValue = toString(numberValue);
-          withoutQuotes  = true;
+          if (IS_NUMBER(numberValue)) {
+	        withoutQuotes  = true;
+          } else {
+        	withoutQuotes = false;
+          }
         }
         break;
 
@@ -648,13 +652,11 @@ std::string ContextAttribute::render
         }
         else // regular number
         {
-          if (numberValue != numberValue) {
-        	  // Only true for nan
-        	  effectiveValue = "nan";
-        	  withoutQuotes = false;
+          effectiveValue = toString(numberValue);
+          if (IS_NUMBER(numberValue)) {
+        	withoutQuotes = true;
           } else {
-			  effectiveValue = toString(numberValue);
-			  withoutQuotes  = true;
+			withoutQuotes  = false;
           }
         }
         break;
