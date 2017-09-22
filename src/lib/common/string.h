@@ -29,8 +29,14 @@
 #include <sstream>
 #include <iomanip>
 #include <vector>
-
+#include <math.h> //isinf()
 #include "common/limits.h"
+
+
+#ifndef IS_NUMBER
+#define IS_NUMBER(x) ((!isnan(x)) && (!isinf(x)))
+#endif
+
 
 // the same macro in parseArg library
 #define FT(x) (x == true)? "true" : "false"
